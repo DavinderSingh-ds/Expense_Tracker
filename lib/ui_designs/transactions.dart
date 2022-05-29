@@ -1,6 +1,5 @@
 import 'package:expense_tracker/database/database.dart';
 import 'package:expense_tracker/model/transactionModel.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'new_expense.dart';

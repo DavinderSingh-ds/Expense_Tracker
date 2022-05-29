@@ -1,6 +1,5 @@
 import 'package:expense_tracker/database/database.dart';
 import 'package:expense_tracker/model/model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Addcategory extends StatefulWidget {
@@ -110,11 +109,11 @@ class _AddcategoryState extends State<Addcategory> {
                             value: dropdownValue,
                             elevation: 16,
                             isExpanded: true,
-                            style:
-                                TextStyle(color: Theme.of(context).accentColor),
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.secondary),
                             underline: Container(
                               height: 2,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                             onChanged: (String? newValue) {
                               setState(
@@ -148,7 +147,7 @@ class _AddcategoryState extends State<Addcategory> {
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: MaterialButton(
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.secondary,
                             child: Text(
                               widget.buttonName != null
                                   ? widget.buttonName!

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 import 'package:expense_tracker/ui_designs/myhomepage.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_indicators/progress_indicators.dart';

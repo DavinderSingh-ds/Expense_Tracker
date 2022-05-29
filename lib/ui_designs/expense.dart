@@ -1,7 +1,6 @@
 import 'package:expense_tracker/database/database.dart';
 import 'package:expense_tracker/model/model.dart';
 import 'package:expense_tracker/ui_designs/add_category.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Expense extends StatefulWidget {

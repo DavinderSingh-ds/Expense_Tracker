@@ -149,7 +149,9 @@ class _NewExpenseState extends State<NewExpense> {
                                         hint: Text('Select Category'),
                                         underline: Container(
                                           height: 2,
-                                          color: Theme.of(context).accentColor,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
                                         ),
                                         onChanged: (String? newValue) {
                                           setState(() {
@@ -238,7 +240,7 @@ class _NewExpenseState extends State<NewExpense> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: MaterialButton(
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               child: Text(
                                 widget.buttonName != null
                                     ? widget.buttonName!
