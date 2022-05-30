@@ -694,7 +694,7 @@ class _DashboardState extends State<Dashboard> {
                                       'Expense',
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 15,
+                                        fontSize: 13,
                                         fontWeight: FontWeight.bold,
                                         shadows: [
                                           Shadow(
@@ -744,7 +744,7 @@ class _DashboardState extends State<Dashboard> {
                                       'Income',
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 15,
+                                        fontSize: 13,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -775,7 +775,6 @@ class _DashboardState extends State<Dashboard> {
       ),
 
       //FAB
-      //
       floatingActionButton: SpeedDial(
         child: const Icon(Icons.add),
         speedDialChildren: <SpeedDialChild>[
