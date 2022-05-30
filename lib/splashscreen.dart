@@ -1,7 +1,11 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:expense_tracker/ui_designs/myhomepage.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_indicators/progress_indicators.dart';
+
+import 'LoginScreen.dart';
+import 'database/Database2.dart';
 
 class SplashhScreen extends StatefulWidget {
   const SplashhScreen({Key? key}) : super(key: key);
@@ -11,20 +15,35 @@ class SplashhScreen extends StatefulWidget {
 }
 
 class _SplashhScreenState extends State<SplashhScreen> {
+  var _databaseprovider;
+
   @override
   void initState() {
     super.initState();
+    _databaseprovider = Databaseprovider.instance;
     Timer(
-      Duration(seconds: 6),
-      () => Navigator.pushReplacement(
+      Duration(seconds: 2),
+      () => autoLogin(),
+    );
+  }
+
+  void autoLogin() async {
+    var currentUser = await _databaseprovider.checkCurrentSession();
+    log('curent user: $currentUser');
+    if (currentUser != Null) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => MyHomePage(title: 'Expense_Tracker'),
+        ),
+      );
+    } else {
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => MyHomePage(
-            title: 'Expense Tracker',
-          ),
+          builder: (context) => LoginScreen(),
         ),
-      ),
-    );
+      );
+    }
   }
 
   @override
