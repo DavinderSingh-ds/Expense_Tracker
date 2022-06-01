@@ -1,3 +1,7 @@
+// ignore_for_file: unnecessary_const, unnecessary_string_interpolations
+
+import 'dart:developer';
+
 import 'package:expense_tracker/database/database.dart';
 import 'package:expense_tracker/model/model.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +20,7 @@ class Addcategory extends StatefulWidget {
 
 class _AddcategoryState extends State<Addcategory> {
   TextEditingController categoryController = TextEditingController();
-  GlobalKey _formkey = GlobalKey();
+  final GlobalKey _formkey = GlobalKey();
   final _databaseProvider = Databaseprovider.instance;
 
   String dropdownValue = 'Expense';
@@ -37,6 +41,7 @@ class _AddcategoryState extends State<Addcategory> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -48,7 +53,7 @@ class _AddcategoryState extends State<Addcategory> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   blurRadius: 10,
                   color: Colors.blueAccent,
@@ -57,12 +62,12 @@ class _AddcategoryState extends State<Addcategory> {
             ),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(
+                const Padding(
+                  padding: EdgeInsets.only(
                     top: 25,
                     bottom: 10,
                   ),
-                  child: Text(
+                  child: const Text(
                     'ADD CATEGORY',
                     style: TextStyle(
                       fontSize: 30,
@@ -91,18 +96,19 @@ class _AddcategoryState extends State<Addcategory> {
                             }
                             return null;
                           },
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Category Name',
                             hintText: 'Category Name',
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 12, right: 12),
                         child: Container(
+                          color: Colors.white,
                           height: 50,
                           width: 300,
                           child: DropdownButton<String>(
@@ -134,7 +140,7 @@ class _AddcategoryState extends State<Addcategory> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 37,
                       ),
                       Padding(
@@ -152,15 +158,14 @@ class _AddcategoryState extends State<Addcategory> {
                               widget.buttonName != null
                                   ? widget.buttonName!
                                   : 'Save',
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                             ),
                             onPressed: () {
                               final FormState? form =
                                   _formkey.currentState as FormState?;
                               if (form!.validate()) {
-                                print(
-                                    'Category Name ${categoryController.text.toString()}');
-                                print('Category Type $dropdownValue');
+                                log('Category Name ${categoryController.text.toString()}');
+                                log('Category Type $dropdownValue');
                                 final newCategory = Categorymodel(
                                     categoryname:
                                         categoryController.text.toString(),
@@ -170,11 +175,11 @@ class _AddcategoryState extends State<Addcategory> {
                                     .isNotEmpty) {
                                   var catId = _databaseProvider
                                       .addCategory(newCategory);
-                                  print('${catId.toString()}');
+                                  log('${catId.toString()}');
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
+                                    const SnackBar(
                                       content: Text('Category Added'),
-                                      duration: Duration(seconds: 2),
+                                      duration: const Duration(seconds: 2),
                                     ),
                                   );
                                   Navigator.pop(context);

@@ -26,7 +26,7 @@ class _CategoriesState extends State<Categories> {
                   Container(
                     height: 90,
                     width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
                           Colors.indigoAccent,
@@ -35,7 +35,7 @@ class _CategoriesState extends State<Categories> {
                       ),
                     ),
                     child: Column(
-                      children: [
+                      children: const [
                         SizedBox(
                           height: 38,
                         ),
@@ -56,7 +56,7 @@ class _CategoriesState extends State<Categories> {
                   Container(
                     height: 65,
                     width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
                           Colors.indigoAccent,
@@ -68,7 +68,7 @@ class _CategoriesState extends State<Categories> {
                   Container(
                     height: 65,
                     width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(colors: [
                         Colors.cyanAccent,
                         Colors.indigoAccent,
@@ -78,7 +78,7 @@ class _CategoriesState extends State<Categories> {
                         topLeft: Radius.circular(70),
                       ),
                     ),
-                    child: TabBar(
+                    child: const TabBar(
                       labelStyle: TextStyle(
                         color: Colors.black,
                         fontSize: 19,
@@ -111,11 +111,12 @@ class _CategoriesState extends State<Categories> {
                 child: Stack(
                   children: [
                     Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.blue,
                       ),
                       child: Container(
-                        child: TabBarView(
+                        color: Colors.white,
+                        child: const TabBarView(
                           children: [
                             Expense(),
                             Income(),
@@ -131,8 +132,8 @@ class _CategoriesState extends State<Categories> {
           floatingActionButton: FloatingActionButton.extended(
             backgroundColor: const Color(0xff03dac6),
             foregroundColor: Colors.black,
-            icon: Icon(Icons.add, size: 24),
-            label: Text(
+            icon: const Icon(Icons.add, size: 24),
+            label: const Text(
               'Add Category',
               style: TextStyle(
                 fontSize: 10,
@@ -144,7 +145,7 @@ class _CategoriesState extends State<Categories> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Addcategory(
+                  builder: (context) => const Addcategory(
                     title: '',
                   ),
                 ),

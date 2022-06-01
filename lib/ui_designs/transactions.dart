@@ -1,3 +1,7 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
+import 'dart:developer';
+
 import 'package:expense_tracker/database/database.dart';
 import 'package:expense_tracker/model/transactionModel.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +20,7 @@ class _TransactionsState extends State<Transactions> {
 
   late Future<List<TransactionModel>> transactionsList;
 
+  @override
   void initState() {
     super.initState();
     _databaseprovider = Databaseprovider.instance;
@@ -31,7 +36,7 @@ class _TransactionsState extends State<Transactions> {
   getTransaction() {
     setState(() {
       transactionsList = _databaseprovider.getAllTransactions();
-      print('Data from categoryList $transactionsList');
+      log('Data from categoryList $transactionsList');
     });
   }
 
@@ -45,7 +50,7 @@ class _TransactionsState extends State<Transactions> {
               Container(
                 height: 90,
                 width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       Colors.greenAccent,
@@ -54,7 +59,7 @@ class _TransactionsState extends State<Transactions> {
                   ),
                 ),
                 child: Column(
-                  children: [
+                  children: const [
                     SizedBox(
                       height: 38,
                     ),
@@ -75,7 +80,7 @@ class _TransactionsState extends State<Transactions> {
               Container(
                 height: 65,
                 width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       Colors.greenAccent,
@@ -87,7 +92,7 @@ class _TransactionsState extends State<Transactions> {
               Container(
                 height: 65,
                 width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(70),
@@ -95,7 +100,7 @@ class _TransactionsState extends State<Transactions> {
                   ),
                 ),
                 child: Column(
-                  children: [
+                  children: const [
                     SizedBox(height: 22),
                     Text('💰 All Transactions Below  🕵️‍♀️'),
                   ],
@@ -110,7 +115,7 @@ class _TransactionsState extends State<Transactions> {
                 height: 460,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     colors: [
                       Colors.greenAccent,
                       Colors.cyanAccent,
@@ -123,35 +128,35 @@ class _TransactionsState extends State<Transactions> {
                   builder: (BuildContext context,
                       AsyncSnapshot<List<TransactionModel>> snapshot) {
                     if (snapshot.hasData) {
-                      print('Length of transaction $snapshot.data?.length');
+                      log('Length of transaction $snapshot.data?.length');
                       return ListView.builder(
                         itemCount: snapshot.data?.length,
                         itemBuilder: (BuildContext context, int index) {
                           TransactionModel transactionModel =
                               snapshot.data![index];
-                          print(' Date $transactionModel.datenow');
+                          log(' Date $transactionModel.datenow');
                           return Card(
                             elevation: 0.8,
                             child: Column(
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   height: 2,
                                 ),
                                 Row(
                                   children: [
-                                    SizedBox(width: 7),
+                                    const SizedBox(width: 7),
                                     Text(
                                       transactionModel.date,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 13,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'Times New Roman',
                                       ),
                                     ),
-                                    SizedBox(width: 170),
+                                    const SizedBox(width: 170),
                                     Text(
                                       transactionModel.transactionType,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 13,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'Times New Roman',
@@ -163,27 +168,30 @@ class _TransactionsState extends State<Transactions> {
                                   padding: const EdgeInsets.only(
                                       left: 6, right: 6, bottom: 1),
                                   child: Container(
+                                    color: Colors.white,
                                     child: Row(
                                       children: [
                                         Container(
+                                          color: Colors.white,
                                           width: 210,
                                           child: Text(
                                             transactionModel.categoryType,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
                                               fontFamily: 'Times New Roman',
                                             ),
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 27,
                                         ),
                                         Container(
+                                          color: Colors.white,
                                           width: 70,
                                           child: Text(
                                             '₹ ${transactionModel.amount}',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.green,
@@ -200,11 +208,12 @@ class _TransactionsState extends State<Transactions> {
                                   child: Row(
                                     children: [
                                       Container(
+                                        color: Colors.white,
                                         width: 230,
                                         // color: Colors.amber,
                                         child: Text(
                                           transactionModel.description,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 11,
                                             fontWeight: FontWeight.bold,
                                             fontFamily: 'Times New Roman',
@@ -218,11 +227,13 @@ class _TransactionsState extends State<Transactions> {
                                   padding: const EdgeInsets.only(
                                       left: 8, right: 10, bottom: 6, top: 5),
                                   child: Container(
+                                    color: Colors.white,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Container(
+                                          color: Colors.white,
                                           height: 25,
                                           width: 100,
                                           child: MaterialButton(
@@ -241,13 +252,14 @@ class _TransactionsState extends State<Transactions> {
                                                 ),
                                               );
                                             },
-                                            child: Icon(
+                                            child: const Icon(
                                               Icons.update,
                                               color: Colors.blue,
                                             ),
                                           ),
                                         ),
                                         Container(
+                                          color: Colors.white,
                                           height: 25,
                                           width: 100,
                                           child: MaterialButton(
@@ -259,7 +271,7 @@ class _TransactionsState extends State<Transactions> {
                                               refreshData();
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
-                                                SnackBar(
+                                                const SnackBar(
                                                   content:
                                                       Text('Category Deleted'),
                                                   duration:
@@ -267,7 +279,7 @@ class _TransactionsState extends State<Transactions> {
                                                 ),
                                               );
                                             },
-                                            child: Icon(
+                                            child: const Icon(
                                               Icons.delete,
                                               color: Colors.red,
                                             ),
@@ -286,7 +298,7 @@ class _TransactionsState extends State<Transactions> {
                       return Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
+                          children: const [
                             Text('Please Wait.....'),
                             SizedBox(height: 30),
                             CircularProgressIndicator(),

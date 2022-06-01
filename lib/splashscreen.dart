@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'dart:async';
 import 'dart:developer';
 import 'package:expense_tracker/ui_designs/myhomepage.dart';
@@ -22,7 +24,7 @@ class _SplashhScreenState extends State<SplashhScreen> {
     super.initState();
     _databaseprovider = Databaseprovider.instance;
     Timer(
-      Duration(seconds: 2),
+      const Duration(seconds: 3),
       () => autoLogin(),
     );
   }
@@ -33,14 +35,14 @@ class _SplashhScreenState extends State<SplashhScreen> {
     if (currentUser != Null) {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => MyHomePage(title: 'Expense_Tracker'),
+          builder: (context) => const MyHomePage(title: 'Expense_Tracker'),
         ),
       );
     } else {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => LoginScreen(),
+          builder: (context) => const LoginScreen(),
         ),
       );
     }
@@ -50,18 +52,19 @@ class _SplashhScreenState extends State<SplashhScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
-            image: new AssetImage("images/splash.jpeg"),
+            image: AssetImage("images/splash.jpeg"),
             fit: BoxFit.fill,
           ),
         ),
         child: Center(
           child: Container(
+            color: Colors.transparent,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Welcome',
                   style: TextStyle(
                     color: Colors.white,
@@ -77,11 +80,11 @@ class _SplashhScreenState extends State<SplashhScreen> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 100,
                 ),
                 CollectionScaleTransition(
-                  children: <Widget>[
+                  children: const <Widget>[
                     Icon(Icons.wallet_membership, color: Colors.white),
                     SizedBox(width: 3),
                     Icon(Icons.ondemand_video, color: Colors.white),
@@ -89,12 +92,12 @@ class _SplashhScreenState extends State<SplashhScreen> {
                     Icon(Icons.workspaces_outline, color: Colors.white),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 ScalingText(
-                  'Loading Please Wait....',
-                  style: TextStyle(
+                  'To Expense Tracker',
+                  style: const TextStyle(
                     color: Colors.white,
                     fontFamily: 'Times New Roman',
                     fontSize: 25.0,

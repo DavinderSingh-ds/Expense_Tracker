@@ -5,7 +5,7 @@ import 'package:expense_tracker/ui_designs/transactions.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -34,8 +34,8 @@ class _MyHomePageState extends State<MyHomePage> {
           color: Colors.white,
           buttonBackgroundColor: Colors.white,
           animationCurve: Curves.easeInOut,
-          animationDuration: Duration(milliseconds: 600),
-          items: <Widget>[
+          animationDuration: const Duration(milliseconds: 600),
+          items: const <Widget>[
             Icon(Icons.home, size: 28),
             Icon(Icons.account_balance_wallet, size: 28),
             Icon(Icons.category_sharp, size: 28),

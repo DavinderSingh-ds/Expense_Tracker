@@ -1,3 +1,7 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
+import 'dart:developer';
+
 import 'package:expense_tracker/LoginScreen.dart';
 import 'package:expense_tracker/database/SessionTable.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +20,7 @@ class _ProfileState extends State<Profile> {
 
   late Future<List<SessionModel>> currentSession;
 
+  @override
   void initState() {
     super.initState();
     _databaseprovider = Databaseprovider.instance;
@@ -31,7 +36,7 @@ class _ProfileState extends State<Profile> {
   getUserData() {
     setState(() {
       currentSession = _databaseprovider.getAllSessionDetail();
-      print('Data from categoryList $currentSession');
+      log('Data from categoryList $currentSession');
     });
   }
 
@@ -57,11 +62,11 @@ class _ProfileState extends State<Profile> {
       backgroundColor: Colors.lightBlueAccent,
       appBar: AppBar(
         elevation: 0,
-        title: Text(
+        title: const Text(
           'Profile',
           style: TextStyle(color: Colors.black87, fontSize: 16),
         ),
-        leading: Icon(
+        leading: const Icon(
           Icons.menu,
           color: Colors.black87,
         ),
@@ -72,7 +77,7 @@ class _ProfileState extends State<Profile> {
         children: [
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(40),
@@ -88,7 +93,7 @@ class _ProfileState extends State<Profile> {
                       height: 150,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
-                        image: DecorationImage(
+                        image: const DecorationImage(
                           image: NetworkImage(
                               'https://www.pixelstalk.net/wp-content/uploads/2016/07/Free-Download-3D-HD-Nature-Backgrounds-1.jpg'),
                           fit: BoxFit.cover,
@@ -100,8 +105,7 @@ class _ProfileState extends State<Profile> {
                         builder: (BuildContext context,
                             AsyncSnapshot<List<SessionModel>> snapshot) {
                           if (snapshot.hasData) {
-                            print(
-                                'Length of transaction $snapshot.data?.length');
+                            log('Length of transaction $snapshot.data?.length');
                             return ListView.builder(
                               itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext context, int index) {
@@ -109,14 +113,14 @@ class _ProfileState extends State<Profile> {
 
                                 return Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     GestureDetector(
                                       child: Hero(
                                         transitionOnUserGestures: mounted,
                                         tag: 'hero-animation_tag',
-                                        child: CircleAvatar(
+                                        child: const CircleAvatar(
                                           radius: 50,
                                           backgroundImage:
                                               AssetImage('images/cover.jpg'),
@@ -126,12 +130,12 @@ class _ProfileState extends State<Profile> {
                                         _showHeroAnimation(context),
                                       },
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Container(
                                       width: 200,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(4),
                                         ),
@@ -140,8 +144,8 @@ class _ProfileState extends State<Profile> {
                                       child: Column(
                                         children: [
                                           Text(
-                                            '${dogModel.userName}',
-                                            style: TextStyle(
+                                            dogModel.userName,
+                                            style: const TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 14,
                                             ),
@@ -157,7 +161,7 @@ class _ProfileState extends State<Profile> {
                             return Center(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
+                                children: const [
                                   Text('Please Wait.....'),
                                   SizedBox(height: 30),
                                   CircularProgressIndicator(),
@@ -179,7 +183,7 @@ class _ProfileState extends State<Profile> {
                       child: Container(
                         height: MediaQuery.of(context).size.height,
                         width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.blue,
                           borderRadius: BorderRadius.all(
                             Radius.circular(8),
@@ -189,7 +193,7 @@ class _ProfileState extends State<Profile> {
                           scrollDirection: Axis.vertical,
                           child: Column(
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Wrap(
@@ -198,7 +202,7 @@ class _ProfileState extends State<Profile> {
                                     scrollDirection: Axis.horizontal,
                                     child: Row(
                                       children: [
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
                                         MaterialButton(
@@ -210,19 +214,19 @@ class _ProfileState extends State<Profile> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    LoginScreen(),
+                                                    const LoginScreen(),
                                               ),
                                             );
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
-                                              SnackBar(
+                                              const SnackBar(
                                                 content:
                                                     Text('User Logged Out'),
                                                 duration: Duration(seconds: 1),
                                               ),
                                             );
                                           },
-                                          child: Icon(
+                                          child: const Icon(
                                             Icons.logout,
                                             color: Colors.red,
                                           ),
@@ -238,7 +242,7 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                 ],

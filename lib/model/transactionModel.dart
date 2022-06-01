@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 class TransactionModel {
   int? id;
   String categoryType;
@@ -22,11 +24,11 @@ class TransactionModel {
           description: data['description'],
           transactionType: data['transactionType']);
   Map<String, dynamic> todatabaseJson() => {
-        'id': this.id,
-        'transactioncategorytype': this.categoryType,
-        'date': this.date,
-        'amount': this.amount,
-        'description': this.description,
-        'transactionType': this.transactionType,
+        'id': id,
+        'transactioncategorytype': categoryType,
+        'date': date,
+        'amount': amount,
+        'description': description,
+        'transactionType': transactionType,
       };
 }

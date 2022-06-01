@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, prefer_typing_uninitialized_variables, file_names
+
 import 'package:flutter/material.dart';
 
 class InputTextWidget extends StatefulWidget {
@@ -25,6 +27,7 @@ class _InputTextWidgetState extends State<InputTextWidget> {
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16),
       child: Container(
+        color: Colors.white,
         child: Material(
           elevation: 1.0,
           shadowColor: Colors.black,
@@ -44,7 +47,8 @@ class _InputTextWidgetState extends State<InputTextWidget> {
                   size: 24.0,
                 ),
                 labelText: widget.labelText,
-                labelStyle: TextStyle(color: Colors.black54, fontSize: 14.0),
+                labelStyle:
+                    const TextStyle(color: Colors.black54, fontSize: 14.0),
                 hintText: '',
                 enabledBorder: InputBorder.none,
                 border: InputBorder.none,

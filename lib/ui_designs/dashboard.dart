@@ -1,3 +1,7 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
+import 'dart:developer';
+
 import 'package:expense_tracker/database/database.dart';
 import 'package:expense_tracker/model/transactionModel.dart';
 import 'package:expense_tracker/ui_designs/profile.dart';
@@ -20,6 +24,7 @@ class _DashboardState extends State<Dashboard> {
   var totalIncome;
   var totalExpense;
 
+  @override
   void initState() {
     super.initState();
     _databaseprovider = Databaseprovider.instance;
@@ -37,7 +42,7 @@ class _DashboardState extends State<Dashboard> {
       expenseTransactionsList = _databaseprovider.gettransactionbyExpense();
       totalIncome = _databaseprovider.getSumofIncome('Income');
       totalExpense = _databaseprovider.getSumofExpense('Expense');
-      print('Data from categoryList $expenseTransactionsList');
+      log('Data from categoryList $expenseTransactionsList');
     });
   }
 
@@ -49,9 +54,9 @@ class _DashboardState extends State<Dashboard> {
     height = size.height;
     oreintation = MediaQuery.of(context).orientation;
 
-    print('Size of Screen is $size');
-    print('Width of Screen is $width');
-    print('Height of Screen is $height');
+    log('Size of Screen is $size');
+    log('Width of Screen is $width');
+    log('Height of Screen is $height');
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
@@ -61,7 +66,7 @@ class _DashboardState extends State<Dashboard> {
               Container(
                 height: 90,
                 width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       Colors.cyanAccent,
@@ -71,13 +76,13 @@ class _DashboardState extends State<Dashboard> {
                 ),
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 38,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text(
+                        const Text(
                           '🕵️‍♀️ Expense Tracker',
                           style: TextStyle(
                             fontSize: 26,
@@ -85,7 +90,7 @@ class _DashboardState extends State<Dashboard> {
                           ),
                         ),
                         IconButton(
-                          icon: new Icon(
+                          icon: const Icon(
                             Icons.account_circle_sharp,
                             size: 30,
                             color: Colors.black,
@@ -111,7 +116,7 @@ class _DashboardState extends State<Dashboard> {
               Container(
                 height: 65,
                 width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       Colors.cyanAccent,
@@ -123,7 +128,7 @@ class _DashboardState extends State<Dashboard> {
               Container(
                 height: 65,
                 width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(70),
@@ -131,7 +136,7 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
                 child: Column(
-                  children: [
+                  children: const [
                     SizedBox(height: 18),
                     Text('💰 Welcome to Money Manager   🕵️‍♀️'),
                   ],
@@ -146,7 +151,7 @@ class _DashboardState extends State<Dashboard> {
                   color: Colors.amber,
                 ),
                 Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(88),
@@ -158,7 +163,7 @@ class _DashboardState extends State<Dashboard> {
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Container(
@@ -166,7 +171,7 @@ class _DashboardState extends State<Dashboard> {
                               width: 140,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   colors: [
                                     Colors.indigoAccent,
                                     Colors.cyanAccent,
@@ -175,7 +180,7 @@ class _DashboardState extends State<Dashboard> {
                               ),
                               child: Column(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   Container(
@@ -184,16 +189,17 @@ class _DashboardState extends State<Dashboard> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(80),
                                       color: Colors.white,
-                                      image: DecorationImage(
+                                      image: const DecorationImage(
                                         image: AssetImage('images/income.png'),
                                         fit: BoxFit.contain,
                                       ),
                                     ),
                                   ),
                                   Container(
+                                    color: Colors.transparent,
                                     height: 50,
                                     width: 100,
-                                    child: Center(
+                                    child: const Center(
                                       child: Text(
                                         'Income',
                                         style: TextStyle(
@@ -210,13 +216,13 @@ class _DashboardState extends State<Dashboard> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 3,
                                   ),
                                   Container(
                                     height: 20,
                                     width: 100,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(3),
@@ -237,14 +243,14 @@ class _DashboardState extends State<Dashboard> {
                                           if (snapshot.hasData) {
                                             return Text(
                                               '₹ ${snapshot.data}',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.green,
                                               ),
                                             );
                                           } else {
-                                            return Center(
+                                            return const Center(
                                               child: Text(
                                                 '₹ ${0.0}',
                                                 style: TextStyle(
@@ -262,7 +268,7 @@ class _DashboardState extends State<Dashboard> {
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Container(
@@ -270,7 +276,7 @@ class _DashboardState extends State<Dashboard> {
                               width: 140,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   colors: [
                                     Colors.cyanAccent,
                                     Colors.greenAccent,
@@ -279,7 +285,7 @@ class _DashboardState extends State<Dashboard> {
                               ),
                               child: Column(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   Container(
@@ -288,7 +294,7 @@ class _DashboardState extends State<Dashboard> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(80),
                                       color: Colors.white,
-                                      image: DecorationImage(
+                                      image: const DecorationImage(
                                         image:
                                             AssetImage('images/expense.jfif'),
                                         fit: BoxFit.contain,
@@ -296,9 +302,10 @@ class _DashboardState extends State<Dashboard> {
                                     ),
                                   ),
                                   Container(
+                                    color: Colors.transparent,
                                     height: 50,
                                     width: 100,
-                                    child: Center(
+                                    child: const Center(
                                       child: Text(
                                         'Expense',
                                         style: TextStyle(
@@ -315,13 +322,13 @@ class _DashboardState extends State<Dashboard> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 3,
                                   ),
                                   Container(
                                     height: 20,
                                     width: 100,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(3),
@@ -342,14 +349,14 @@ class _DashboardState extends State<Dashboard> {
                                           if (snapshot.hasData) {
                                             return Text(
                                               '₹ ${snapshot.data}',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.green,
                                               ),
                                             );
                                           } else {
-                                            return Center(
+                                            return const Center(
                                               child: Text(
                                                 '₹ ${0.0}',
                                                 style: TextStyle(
@@ -367,7 +374,7 @@ class _DashboardState extends State<Dashboard> {
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Container(
@@ -375,7 +382,7 @@ class _DashboardState extends State<Dashboard> {
                               width: 140,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   colors: [
                                     Colors.indigoAccent,
                                     Colors.cyanAccent,
@@ -384,7 +391,7 @@ class _DashboardState extends State<Dashboard> {
                               ),
                               child: Column(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   Container(
@@ -393,15 +400,16 @@ class _DashboardState extends State<Dashboard> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(80),
                                       color: Colors.white,
-                                      image: DecorationImage(
+                                      image: const DecorationImage(
                                         image: AssetImage('images/balance.png'),
                                       ),
                                     ),
                                   ),
                                   Container(
+                                    color: Colors.transparent,
                                     height: 50,
                                     width: 100,
-                                    child: Center(
+                                    child: const Center(
                                       child: Text(
                                         'Balance',
                                         style: TextStyle(
@@ -417,13 +425,13 @@ class _DashboardState extends State<Dashboard> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 40,
                                   ),
                                   Container(
                                     height: 20,
                                     width: 100,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(3),
@@ -453,14 +461,14 @@ class _DashboardState extends State<Dashboard> {
                                                               snapshotExpense
                                                                   .data)
                                                           .toString(),
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     fontSize: 16,
                                                     fontWeight: FontWeight.bold,
                                                     color: Colors.green,
                                                   ),
                                                 );
                                               } else {
-                                                return Center(
+                                                return const Center(
                                                   child: Text(
                                                     '₹ ${0.0}',
                                                     style: TextStyle(
@@ -481,7 +489,7 @@ class _DashboardState extends State<Dashboard> {
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                           ],
@@ -491,7 +499,8 @@ class _DashboardState extends State<Dashboard> {
                         padding: const EdgeInsets.only(
                             left: 10, right: 10, top: 10, bottom: 5),
                         child: Container(
-                          child: Text(
+                          color: Colors.white,
+                          child: const Text(
                             'Recent Transactions',
                             style: TextStyle(
                               color: Colors.black,
@@ -516,14 +525,14 @@ class _DashboardState extends State<Dashboard> {
                             height: MediaQuery.of(context).size.height,
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(
+                              gradient: const LinearGradient(
                                 colors: [
                                   Colors.white,
                                   Colors.indigoAccent,
                                 ],
                               ),
                               borderRadius: BorderRadius.circular(6),
-                              boxShadow: [
+                              boxShadow: const [
                                 BoxShadow(
                                   offset: Offset(2, 2),
                                   blurRadius: 2,
@@ -537,8 +546,7 @@ class _DashboardState extends State<Dashboard> {
                                   AsyncSnapshot<List<TransactionModel>>
                                       expenseSnapshot) {
                                 if (expenseSnapshot.hasData) {
-                                  print(
-                                      'Lenght of the data ${expenseSnapshot.data!.length}');
+                                  log('Lenght of the data ${expenseSnapshot.data!.length}');
                                   return ListView.builder(
                                     itemCount: expenseSnapshot.data?.length,
                                     itemBuilder:
@@ -556,13 +564,15 @@ class _DashboardState extends State<Dashboard> {
                                                 padding:
                                                     const EdgeInsets.all(2.0),
                                                 child: Container(
+                                                  color: Colors.white,
                                                   child: Row(
                                                     children: [
                                                       Container(
+                                                        color: Colors.white,
                                                         child: Text(
                                                           transactionDetails
                                                               .categoryType,
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                               fontSize: 14,
                                                               fontWeight:
                                                                   FontWeight
@@ -587,7 +597,7 @@ class _DashboardState extends State<Dashboard> {
                                                             2.0),
                                                     child: Text(
                                                       transactionDetails.date,
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         fontSize: 13,
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -597,10 +607,11 @@ class _DashboardState extends State<Dashboard> {
                                                     ),
                                                   ),
                                                   Container(
+                                                    color: Colors.white,
                                                     width: 90,
                                                     child: Text(
                                                       '₹ ${transactionDetails.amount}',
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         fontSize: 14,
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -623,7 +634,7 @@ class _DashboardState extends State<Dashboard> {
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: [
+                                      children: const [
                                         Text('Please Wait.....'),
                                         SizedBox(height: 30),
                                         CircularProgressIndicator(),
@@ -636,7 +647,7 @@ class _DashboardState extends State<Dashboard> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
                     ],
@@ -646,6 +657,7 @@ class _DashboardState extends State<Dashboard> {
             ),
           ),
           Container(
+            color: Colors.white,
             height: 75,
             child: Stack(
               children: [
@@ -655,7 +667,7 @@ class _DashboardState extends State<Dashboard> {
                 Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.amber,
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(40),
@@ -672,7 +684,7 @@ class _DashboardState extends State<Dashboard> {
                         child: Container(
                           height: 45,
                           width: 270,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             gradient: LinearGradient(
                               colors: [
                                 Colors.greenAccent,
@@ -692,7 +704,7 @@ class _DashboardState extends State<Dashboard> {
                                 child: Container(
                                   height: 34,
                                   width: 90,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     gradient: LinearGradient(
                                       colors: [
                                         Colors.cyan,
@@ -711,7 +723,7 @@ class _DashboardState extends State<Dashboard> {
                                     ],
                                   ),
                                   child: MaterialButton(
-                                    child: Text(
+                                    child: const Text(
                                       'Expense',
                                       style: TextStyle(
                                         color: Colors.white,
@@ -730,7 +742,7 @@ class _DashboardState extends State<Dashboard> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              NewExpense(title: ''),
+                                              const NewExpense(title: ''),
                                         ),
                                       );
                                     },
@@ -742,7 +754,7 @@ class _DashboardState extends State<Dashboard> {
                                 child: Container(
                                   height: 34,
                                   width: 90,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     gradient: LinearGradient(
                                       colors: [
                                         Colors.cyan,
@@ -761,7 +773,7 @@ class _DashboardState extends State<Dashboard> {
                                     ],
                                   ),
                                   child: MaterialButton(
-                                    child: Text(
+                                    child: const Text(
                                       'Income',
                                       style: TextStyle(
                                         color: Colors.white,
@@ -773,7 +785,8 @@ class _DashboardState extends State<Dashboard> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => Incomepage(
+                                          builder: (context) =>
+                                              const Incomepage(
                                             title: '',
                                           ),
                                         ),

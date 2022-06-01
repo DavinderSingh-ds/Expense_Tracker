@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:developer';
 import 'package:expense_tracker/ui_designs/myhomepage.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +11,7 @@ import 'database/SessionTable.dart';
 import 'database/UsersTable.dart';
 
 class SignUpScreen extends StatefulWidget {
-  SignUpScreen({
+  const SignUpScreen({
     Key? key,
     this.newsignUpModel,
   }) : super(key: key);
@@ -35,13 +37,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sign Up",
+        title: const Text("Sign Up",
             style: TextStyle(
               color: Colors.black,
               fontSize: 18,
               shadows: [
                 Shadow(
-                  color: const Color(0xba000000),
+                  color: Color(0xba000000),
                   offset: Offset(0, 0),
                   blurRadius: 3,
                 )
@@ -49,7 +51,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             )),
         leading: InkWell(
           onTap: () => Navigator.pop(context),
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
             color: Colors.black,
           ),
@@ -71,7 +73,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                     InputTextWidget(
@@ -80,7 +82,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         icon: Icons.person,
                         obscureText: false,
                         keyboardType: TextInputType.text),
-                    SizedBox(
+                    const SizedBox(
                       height: 16.0,
                     ),
                     InputTextWidget(
@@ -89,12 +91,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         icon: Icons.email,
                         obscureText: false,
                         keyboardType: TextInputType.emailAddress),
-                    SizedBox(
+                    const SizedBox(
                       height: 16.0,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 16, right: 16),
                       child: Container(
+                        color: Colors.white,
                         child: Material(
                           elevation: 1.0,
                           shadowColor: Colors.black,
@@ -107,7 +110,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 textInputAction: TextInputAction.next,
                                 autofocus: false,
                                 keyboardType: TextInputType.text,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   icon: Icon(
                                     Icons.lock,
                                     color: Colors.black,
@@ -134,12 +137,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16.0,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 16, right: 16),
                       child: Container(
+                        color: Colors.white,
                         child: Material(
                           elevation: 1.0,
                           shadowColor: Colors.black,
@@ -152,7 +156,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 textInputAction: TextInputAction.done,
                                 autofocus: false,
                                 keyboardType: TextInputType.text,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   icon: Icon(
                                     Icons.lock,
                                     color: Colors.black,
@@ -168,21 +172,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 controller: _confirmPass,
                                 validator: (val) {
                                   if (val!.isEmpty) return 'confirm Password!!';
-                                  if (val != _pass.text)
+                                  if (val != _pass.text) {
                                     return 'Incorrect Password';
+                                  }
                                   return null;
                                 }),
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16.0,
                     ),
                     Padding(
                       padding:
                           const EdgeInsets.only(left: 16, right: 16, top: 8),
                       child: Container(
+                        color: Colors.white,
                         height: 50.0,
                         child: ElevatedButton(
                           clipBehavior: Clip.antiAlias,
@@ -228,8 +234,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      MyHomePage(title: 'Expense_Tracker'),
+                                  builder: (context) => const MyHomePage(
+                                      title: 'Expense_Tracker'),
                                 ),
                               );
                             }
@@ -237,7 +243,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           child: Ink(
                             child: Container(
                               alignment: Alignment.center,
-                              child: Text(
+                              child: const Text(
                                 "Continue",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(

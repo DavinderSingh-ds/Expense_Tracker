@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 class UsersModel {
   int? id;
   String userName;
@@ -19,10 +21,10 @@ class UsersModel {
         confirmPassword: data['cnfpsswrd'],
       );
   Map<String, dynamic> todatabaseJson() => {
-        'id': this.id,
-        'name': this.userName,
-        'email': this.userEmail,
-        'passwrd': this.userPassword,
-        'cnfpsswrd': this.confirmPassword,
+        'id': id,
+        'name': userName,
+        'email': userEmail,
+        'passwrd': userPassword,
+        'cnfpsswrd': confirmPassword,
       };
 }

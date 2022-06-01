@@ -1,3 +1,7 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
+import 'dart:developer';
+
 import 'package:expense_tracker/database/database.dart';
 import 'package:expense_tracker/model/model.dart';
 import 'package:expense_tracker/ui_designs/add_category.dart';
@@ -15,6 +19,7 @@ class _ExpenseState extends State<Expense> {
 
   late Future<List<Categorymodel>> categoryExpenseList;
 
+  @override
   void initState() {
     super.initState();
     _databaseprovider = Databaseprovider.instance;
@@ -30,7 +35,7 @@ class _ExpenseState extends State<Expense> {
   getCategories() {
     setState(() {
       categoryExpenseList = _databaseprovider.retriveCategoriesbyExpense();
-      print('Data from categoryList $categoryExpenseList');
+      log('Data from categoryList $categoryExpenseList');
     });
   }
 
@@ -38,6 +43,7 @@ class _ExpenseState extends State<Expense> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        color: Colors.white,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.only(top: 20, bottom: 70),
@@ -47,7 +53,7 @@ class _ExpenseState extends State<Expense> {
                 height: 350,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     colors: [
                       Colors.cyanAccent,
                       Colors.tealAccent,
@@ -68,10 +74,11 @@ class _ExpenseState extends State<Expense> {
                             elevation: 2,
                             child: Row(
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   width: 4,
                                 ),
                                 Container(
+                                  color: Colors.white,
                                   width: 253,
                                   child: Padding(
                                     padding: const EdgeInsets.only(
@@ -82,7 +89,7 @@ class _ExpenseState extends State<Expense> {
                                     child: Text(
                                       snapshot.data![index].categoryname
                                           .toString(),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 16,
                                         fontFamily: 'Times New Roman',
                                         fontWeight: FontWeight.bold,
@@ -104,12 +111,12 @@ class _ExpenseState extends State<Expense> {
                                     );
                                     refreshData();
                                   },
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.update,
                                     color: Colors.blue,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 13,
                                 ),
                                 InkWell(
@@ -118,13 +125,13 @@ class _ExpenseState extends State<Expense> {
                                         .deleteCategory(categoryModel.id);
                                     refreshData();
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
+                                      const SnackBar(
                                         content: Text('Category Deleted'),
                                         duration: Duration(milliseconds: 1),
                                       ),
                                     );
                                   },
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.delete,
                                     color: Colors.red,
                                   ),
@@ -138,7 +145,7 @@ class _ExpenseState extends State<Expense> {
                       return Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
+                          children: const [
                             Text('Please Wait.....'),
                             SizedBox(height: 30),
                             CircularProgressIndicator(),

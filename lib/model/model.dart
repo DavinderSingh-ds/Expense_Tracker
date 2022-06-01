@@ -9,5 +9,6 @@ class Categorymodel {
           categoryname: data['categoryname'],
           type: data['type']);
   Map<String, dynamic> todatabaseJson() =>
+      // ignore: unnecessary_this
       {'id': this.id, 'categoryname': this.categoryname, 'type': this.type};
 }

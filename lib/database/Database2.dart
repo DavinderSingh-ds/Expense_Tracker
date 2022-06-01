@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:developer';
 import 'dart:io';
 
@@ -9,30 +11,30 @@ import 'SessionTable.dart';
 import 'UsersTable.dart';
 
 class Databaseprovider {
-  static final _databaseName = "dogdatabase.db";
-  static final _databaseVersion = 1;
+  static const _databaseName = "dogdatabase.db";
+  static const _databaseVersion = 1;
 
-  static final usersTable = 'authentication';
-  static final userId = 'id';
-  static final userName = 'name';
-  static final userEmail = 'email';
-  static final userPassword = 'passwrd';
-  static final cnfPassword = 'cnfpsswrd';
+  static const usersTable = 'authentication';
+  static const userId = 'id';
+  static const userName = 'name';
+  static const userEmail = 'email';
+  static const userPassword = 'passwrd';
+  static const cnfPassword = 'cnfpsswrd';
 
-  static final sessionTable = 'autoLogin';
-  static final autoId = 'id';
-  static final autoName = 'name';
-  static final autoEmail = 'email';
-  static final autoPassword = 'passwrd';
-  static final autocnfPassword = 'cnfpsswrd';
+  static const sessionTable = 'autoLogin';
+  static const autoId = 'id';
+  static const autoName = 'name';
+  static const autoEmail = 'email';
+  static const autoPassword = 'passwrd';
+  static const autocnfPassword = 'cnfpsswrd';
 
-  static final dogTable = 'transactions';
-  static final dogId = 'id';
-  static final dogName = 'transactioncategorytype';
-  static final buyDate = 'date';
-  static final dogAge = 'amount';
-  static final dogBreed = 'description';
-  static final dogColor = 'transactionType';
+  static const dogTable = 'transactions';
+  static const dogId = 'id';
+  static const dogName = 'transactioncategorytype';
+  static const buyDate = 'date';
+  static const dogAge = 'amount';
+  static const dogBreed = 'description';
+  static const dogColor = 'transactionType';
 
   Databaseprovider._privateconstructor();
   static final Databaseprovider instance =
@@ -83,7 +85,7 @@ class Databaseprovider {
   addSignUpdetail(UsersModel signupdetailModel) async {
     Database adddetaildb = await instance.database;
     return await adddetaildb.insert(
-      '$usersTable',
+      usersTable,
       signupdetailModel.todatabaseJson(),
     );
   }
@@ -91,7 +93,7 @@ class Databaseprovider {
   addSessionDetails(SessionModel autoLogin) async {
     Database adddetaildb = await instance.database;
     return await adddetaildb.insert(
-      '$sessionTable',
+      sessionTable,
       autoLogin.todatabaseJson(),
     );
   }
@@ -130,21 +132,21 @@ class Databaseprovider {
   Future<List<UsersModel>> getAllsignUpdetail() async {
     final signupdb = await instance.database;
     final List<Map<String, Object?>> signUpallData =
-        await signupdb.query('$usersTable');
+        await signupdb.query(usersTable);
     return signUpallData.map((e) => UsersModel.fromdatabaseJson(e)).toList();
   }
 
   Future<List<SessionModel>> getAllSessionDetail() async {
     final autodb = await instance.database;
     final List<Map<String, Object?>> allSessionData =
-        await autodb.query('$sessionTable');
+        await autodb.query(sessionTable);
     return allSessionData.map((e) => SessionModel.fromdatabaseJson(e)).toList();
   }
 
   Future<void> clearSession() async {
     final newdb = await instance.database;
     await newdb.delete(
-      '$sessionTable',
+      sessionTable,
     );
   }
 }

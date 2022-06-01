@@ -1,10 +1,14 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
+import 'dart:developer';
+
 import 'package:expense_tracker/database/database.dart';
 import 'package:expense_tracker/model/model.dart';
 import 'package:expense_tracker/model/transactionModel.dart';
 import 'package:flutter/material.dart';
 
 class NewExpense extends StatefulWidget {
-  NewExpense({
+  const NewExpense({
     Key? key,
     required this.title,
     this.newexpenseModel,
@@ -19,10 +23,10 @@ class NewExpense extends StatefulWidget {
 }
 
 class _NewExpenseState extends State<NewExpense> {
-  TextEditingController _dateController = TextEditingController();
-  TextEditingController _descriptionController = TextEditingController();
-  TextEditingController _amountController = TextEditingController();
-  GlobalKey _formKey = GlobalKey();
+  final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _amountController = TextEditingController();
+  final GlobalKey _formKey = GlobalKey();
   String? dropdownValue;
 
   final _databaseProvider = Databaseprovider.instance;
@@ -40,17 +44,17 @@ class _NewExpenseState extends State<NewExpense> {
   }
 
   refreshhData() {
-    print('Inside of the refresData Function');
+    log('Inside of the refresData Function');
     setState(() {
       getCategories();
     });
   }
 
   getCategories() {
-    print('Inside of the getCategories Function');
+    log('Inside of the getCategories Function');
     setState(() {
       expensedList = _databaseProvider.retriveTransactionCategoriesbyExpense();
-      print('Expesne List Data ${expensedList.toString()}');
+      log('Expesne List Data ${expensedList.toString()}');
     });
   }
 
@@ -88,7 +92,7 @@ class _NewExpenseState extends State<NewExpense> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       blurRadius: 10,
                       color: Colors.blueAccent,
@@ -97,8 +101,8 @@ class _NewExpenseState extends State<NewExpense> {
                 ),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
+                    const Padding(
+                      padding: EdgeInsets.only(
                         top: 25,
                         bottom: 10,
                       ),
@@ -121,18 +125,19 @@ class _NewExpenseState extends State<NewExpense> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 2,
                           ),
                           Row(
                             children: [
-                              SizedBox(width: 6),
+                              const SizedBox(width: 6),
                               Icon(
                                 Icons.category_outlined,
                                 color: Colors.grey[600],
                               ),
-                              SizedBox(width: 18),
+                              const SizedBox(width: 18),
                               Container(
+                                color: Colors.white,
                                 height: 50,
                                 width: 275,
                                 child: FutureBuilder(
@@ -141,12 +146,12 @@ class _NewExpenseState extends State<NewExpense> {
                                       AsyncSnapshot<List<Categorymodel>>
                                           expenseSnapshot) {
                                     if (expenseSnapshot.hasData) {
-                                      print('${expenseSnapshot.data}');
+                                      log('${expenseSnapshot.data}');
                                       return DropdownButton(
                                         value: dropdownValue,
                                         elevation: 12,
                                         isExpanded: true,
-                                        hint: Text('Select Category'),
+                                        hint: const Text('Select Category'),
                                         underline: Container(
                                           height: 2,
                                           color: Theme.of(context)
@@ -167,7 +172,7 @@ class _NewExpenseState extends State<NewExpense> {
                                         }).toList(),
                                       );
                                     } else {
-                                      return Text('No Data');
+                                      return const Text('No Data');
                                     }
                                   },
                                 ),
@@ -189,7 +194,8 @@ class _NewExpenseState extends State<NewExpense> {
                                     labelText: (pickedDate == null)
                                         ? '${selectedDate.day}-${selectedDate.month}-${selectedDate.year}'
                                         : pickedDate,
-                                    icon: Icon(Icons.calendar_today_rounded),
+                                    icon: const Icon(
+                                        Icons.calendar_today_rounded),
                                   ),
                                   // validator: (value) {
                                   //   if (value!.isEmpty) {
@@ -212,7 +218,7 @@ class _NewExpenseState extends State<NewExpense> {
                                 return null;
                               },
                               keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 labelText: 'Amount',
                                 hintText: 'Enter Amount',
                                 icon:
@@ -230,7 +236,7 @@ class _NewExpenseState extends State<NewExpense> {
                                 }
                                 return null;
                               },
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 labelText: 'Description',
                                 hintText: '',
                                 icon: Icon(Icons.description_outlined),
@@ -245,14 +251,13 @@ class _NewExpenseState extends State<NewExpense> {
                                 widget.buttonName != null
                                     ? widget.buttonName!
                                     : 'Save',
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                               ),
                               onPressed: () {
                                 final FormState? formm =
                                     _formKey.currentState as FormState?;
                                 if (formm!.validate()) {
-                                  print(
-                                      'Expense is ${_amountController.text.toString()}');
+                                  log('Expense is ${_amountController.text.toString()}');
                                   final newexpensess = TransactionModel(
                                     amount: _amountController.text.toString(),
                                     description:
@@ -267,7 +272,7 @@ class _NewExpenseState extends State<NewExpense> {
                                       .isNotEmpty) {
                                     var catId = _databaseProvider
                                         .addTransaction(newexpensess);
-                                    print('${catId.toString()}');
+                                    log(catId.toString());
                                   }
                                   if (widget.newexpenseModel != null) {
                                     newexpensess.id =

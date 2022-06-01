@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables, file_names
+
 import 'dart:async';
 import 'dart:developer';
 
@@ -12,7 +14,7 @@ import 'database/SessionTable.dart';
 import 'database/UsersTable.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen() : super();
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   _SearchScreenState createState() => _SearchScreenState();
@@ -21,13 +23,14 @@ class LoginScreen extends StatefulWidget {
 class _SearchScreenState extends State<LoginScreen> {
   final TextEditingController _pwdController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  GlobalKey _formKey = GlobalKey<FormState>();
+  final GlobalKey _formKey = GlobalKey<FormState>();
 
   var _databaseprovider;
 
   late Future<List<UsersModel>> signUpdetailList;
   late Future<List<SessionModel>> getAllSessionDetail;
 
+  @override
   void initState() {
     super.initState();
     _databaseprovider = Databaseprovider.instance;
@@ -65,7 +68,7 @@ class _SearchScreenState extends State<LoginScreen> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => MyHomePage(title: 'Dogs_Diary'),
+        builder: (context) => const MyHomePage(title: 'Dogs_Diary'),
       ),
     );
   }
@@ -73,12 +76,12 @@ class _SearchScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final double r = (175 / 360);
+    const double r = (175 / 360);
     final coverHeight = screenWidth * r;
 
     final widgetList = [
       Row(
-        children: [
+        children: const [
           SizedBox(
             width: 16,
           ),
@@ -87,13 +90,13 @@ class _SearchScreenState extends State<LoginScreen> {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: const Color(0xff000000),
+              color: Color(0xff000000),
             ),
             textAlign: TextAlign.left,
           ),
         ],
       ),
-      SizedBox(
+      const SizedBox(
         height: 16.0,
       ),
       Form(
@@ -107,12 +110,13 @@ class _SearchScreenState extends State<LoginScreen> {
                 obscureText: false,
                 keyboardType: TextInputType.emailAddress,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16),
                 child: Container(
+                  color: Colors.white,
                   child: Material(
                     elevation: 1.0,
                     shadowColor: Colors.black,
@@ -124,7 +128,7 @@ class _SearchScreenState extends State<LoginScreen> {
                           textInputAction: TextInputAction.done,
                           autofocus: false,
                           keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             icon: Icon(
                               Icons.lock,
                               color: Colors.black,
@@ -166,10 +170,11 @@ class _SearchScreenState extends State<LoginScreen> {
                       ),
                     )),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               Container(
+                color: Colors.white,
                 height: 50.0,
                 child: ElevatedButton(
                   onPressed: () async {
@@ -183,7 +188,7 @@ class _SearchScreenState extends State<LoginScreen> {
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0.0,
-                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(0)),
                     ),
@@ -194,7 +199,7 @@ class _SearchScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.circular(10.0)),
                     child: Container(
                       alignment: Alignment.center,
-                      child: Text(
+                      child: const Text(
                         "Sign in",
                         style: TextStyle(
                           fontSize: 18,
@@ -208,10 +213,11 @@ class _SearchScreenState extends State<LoginScreen> {
               ),
             ],
           )),
-      SizedBox(
+      const SizedBox(
         height: 16,
       ),
       Container(
+        color: Colors.white,
         height: 50.0,
         child: Center(
             child: Wrap(
@@ -224,7 +230,7 @@ class _SearchScreenState extends State<LoginScreen> {
             Material(
                 child: InkWell(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => SignUpScreen(),
+                builder: (context) => const SignUpScreen(),
               )),
               child: Text(
                 "Sign Up",
@@ -245,10 +251,10 @@ class _SearchScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.only(left: 16, top: 16),
             child: Container(
               decoration: BoxDecoration(
-                  boxShadow: <BoxShadow>[
+                  boxShadow: const <BoxShadow>[
                     BoxShadow(
                         color: Colors.grey, //Color(0xfff05945),
-                        offset: const Offset(0, 0),
+                        offset: Offset(0, 0),
                         blurRadius: 5.0),
                   ],
                   color: Colors.white,
@@ -259,7 +265,7 @@ class _SearchScreenState extends State<LoginScreen> {
                 borderRadius: BorderRadius.circular(12.0),
                 child: InkWell(
                   onTap: () {
-                    print("facebook tapped");
+                    log("facebook tapped");
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -269,10 +275,10 @@ class _SearchScreenState extends State<LoginScreen> {
                           "images/fb.png",
                           fit: BoxFit.cover,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 7.0,
                         ),
-                        Text(
+                        const Text(
                           "Sign in",
                           style: TextStyle(
                             color: Colors.blue,
@@ -290,10 +296,10 @@ class _SearchScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.only(right: 16, top: 16),
             child: Container(
               decoration: BoxDecoration(
-                  boxShadow: <BoxShadow>[
+                  boxShadow: const <BoxShadow>[
                     BoxShadow(
                         color: Colors.grey,
-                        offset: const Offset(0, 0),
+                        offset: Offset(0, 0),
                         blurRadius: 5.0),
                   ],
                   color: Colors.white,
@@ -304,7 +310,7 @@ class _SearchScreenState extends State<LoginScreen> {
                 borderRadius: BorderRadius.circular(12.0),
                 child: InkWell(
                   onTap: () {
-                    print("google tapped");
+                    log("google tapped");
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -314,10 +320,10 @@ class _SearchScreenState extends State<LoginScreen> {
                           "images/google.png",
                           fit: BoxFit.cover,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 7.0,
                         ),
-                        Text(
+                        const Text(
                           "Sign in",
                           style: TextStyle(
                             color: Colors.red,
@@ -333,7 +339,7 @@ class _SearchScreenState extends State<LoginScreen> {
           ),
         ],
       ),
-      SizedBox(
+      const SizedBox(
         height: 15.0,
       ),
     ];

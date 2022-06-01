@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:expense_tracker/model/model.dart';
 import 'package:expense_tracker/model/transactionModel.dart';
@@ -7,23 +8,23 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class Databaseprovider {
-  static final _databaseName = "mydatabase.db";
-  static final _databaseVersion = 1;
+  static const _databaseName = "mydatabase.db";
+  static const _databaseVersion = 1;
 
   //Fields for Category Table
-  static final table = 'category';
-  static final categoryColumnId = 'id';
-  static final categoryColumnName = 'categoryname';
-  static final categoryColumntype = 'type';
+  static const table = 'category';
+  static const categoryColumnId = 'id';
+  static const categoryColumnName = 'categoryname';
+  static const categoryColumntype = 'type';
 
   //Fields for Transaction Table
-  static final transactionTable = 'transactions';
-  static final transactionId = 'id';
-  static final transactionCategoryType = 'transactioncategorytype';
-  static final transactionDate = 'date';
-  static final transactionAmount = 'amount';
-  static final transactionDescription = 'description';
-  static final transactionType = 'transactionType';
+  static const transactionTable = 'transactions';
+  static const transactionId = 'id';
+  static const transactionCategoryType = 'transactioncategorytype';
+  static const transactionDate = 'date';
+  static const transactionAmount = 'amount';
+  static const transactionDescription = 'description';
+  static const transactionType = 'transactionType';
 
   // make this a singleton class
   Databaseprovider._privateconstructor();
@@ -69,14 +70,14 @@ class Databaseprovider {
   //Insert the Category in the Category Model
   addCategory(Categorymodel categoryModel) async {
     Database db = await instance.database;
-    return await db.insert('$table', categoryModel.todatabaseJson());
+    return await db.insert(table, categoryModel.todatabaseJson());
   }
 
   //Getting data from the Category Table to show in the page
   Future<List<Categorymodel>> retriveCategoriesbyExpense() async {
     final db = await instance.database;
     final List<Map<String, dynamic>> categoryyyData = await db.query(
-      '$table',
+      table,
       where: "type = ?",
       whereArgs: ['Expense'],
     );
@@ -89,7 +90,7 @@ class Databaseprovider {
   Future<List<Categorymodel>> retriveCategoriesbyIncome() async {
     final db = await instance.database;
     final List<Map<String, Object?>> categoryEData = await db.query(
-      '$table',
+      table,
       where: "type = ?",
       whereArgs: ['Income'],
     );
@@ -100,7 +101,7 @@ class Databaseprovider {
   Future<void> deleteCategory(int? id) async {
     final db = await instance.database;
     await db.delete(
-      '$table',
+      table,
       where: "id = ?",
       whereArgs: [id],
     );
@@ -109,7 +110,7 @@ class Databaseprovider {
   //Update Category from the Category Model
   updateData(Categorymodel categoryModel) async {
     final db = await database;
-    var result = await db.update("$table", categoryModel.todatabaseJson(),
+    var result = await db.update(table, categoryModel.todatabaseJson(),
         where: "id = ?", whereArgs: [categoryModel.id]);
     return result;
   }
@@ -121,7 +122,7 @@ class Databaseprovider {
   addTransaction(TransactionModel transactionModel) async {
     Database newdb = await instance.database;
     return await newdb.insert(
-      '$transactionTable',
+      transactionTable,
       transactionModel.todatabaseJson(),
     );
   }
@@ -130,8 +131,8 @@ class Databaseprovider {
   Future<List<TransactionModel>> getAllTransactions() async {
     final db = await instance.database;
     final List<Map<String, Object?>> newallData =
-        await db.query('$transactionTable');
-    print('Transactions $transactionTable');
+        await db.query(transactionTable);
+    log('Transactions $transactionTable');
     return newallData.map((e) => TransactionModel.fromdatabaseJson(e)).toList();
   }
 
@@ -139,7 +140,7 @@ class Databaseprovider {
   Future<void> deleteTransaction(int? id) async {
     final newdb = await instance.database;
     await newdb.delete(
-      '$transactionTable',
+      transactionTable,
       where: "$transactionId = ?",
       whereArgs: [id],
     );
@@ -149,7 +150,7 @@ class Databaseprovider {
   updateTransaction(TransactionModel transactionModel) async {
     final newdb = await database;
     var result = await newdb.update(
-        "$transactionTable", transactionModel.todatabaseJson(),
+        transactionTable, transactionModel.todatabaseJson(),
         where: "$transactionId = ?", whereArgs: [transactionModel.id]);
     return result;
   }
@@ -158,14 +159,14 @@ class Databaseprovider {
   Future<List<Categorymodel>> retriveTransactionCategoriesbyExpense() async {
     final newdb = await instance.database;
     final List<Map<String, dynamic>> newEData = await newdb.query(
-      '$table',
+      table,
       where: "$categoryColumntype = ?",
       whereArgs: ['Expense'],
     );
     List<Categorymodel> catData = newEData.isNotEmpty
         ? newEData.map((e) => Categorymodel.fromdatabaseJson(e)).toList()
         : [];
-    print('Date expense of Category $catData');
+    log('Date expense of Category $catData');
     return catData;
   }
 
@@ -173,14 +174,14 @@ class Databaseprovider {
   Future<List<Categorymodel>> retriveTransactionCategoriesbyIncome() async {
     final newdb = await instance.database;
     final List<Map<String, dynamic>> newEData = await newdb.query(
-      '$table',
+      table,
       where: "$categoryColumntype = ?",
       whereArgs: ['Income'],
     );
     List<Categorymodel> catData = newEData.isNotEmpty
         ? newEData.map((e) => Categorymodel.fromdatabaseJson(e)).toList()
         : [];
-    print('Date expense of Category $catData');
+    log('Date expense of Category $catData');
     return catData;
   }
 
@@ -188,14 +189,14 @@ class Databaseprovider {
   Future<List<TransactionModel>> gettransactionbyExpense() async {
     final newdb = await instance.database;
     final List<Map<String, dynamic>> newEData = await newdb.query(
-      '$transactionTable',
+      transactionTable,
       where: "transactionType = ?",
       whereArgs: ['Expense'],
     );
     List<TransactionModel> homeData = newEData.isNotEmpty
         ? newEData.map((e) => TransactionModel.fromdatabaseJson(e)).toList()
         : [];
-    print('Date expense of Category $homeData');
+    log('Date expense of Category $homeData');
     return homeData;
   }
 
@@ -206,7 +207,7 @@ class Databaseprovider {
         "SELECT SUM($transactionAmount) FROM $transactionTable WHERE $transactionType = ?",
         [type]));
     int expenseSumData = expenseResult[0]['SUM(amount)'] as int;
-    print('Sum of Expense $expenseSumData');
+    log('Sum of Expense $expenseSumData');
     return expenseSumData;
   }
 
@@ -217,7 +218,7 @@ class Databaseprovider {
         "SELECT SUM($transactionAmount) FROM $transactionTable WHERE $transactionType = ?",
         [type]));
     int incomeSumData = incomeResult[0]['SUM(amount)'] as int;
-    print('Sum of Income $incomeSumData');
+    log('Sum of Income $incomeSumData');
     return incomeSumData;
   }
 }
