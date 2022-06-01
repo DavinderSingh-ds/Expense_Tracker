@@ -1,5 +1,6 @@
 import 'package:expense_tracker/database/database.dart';
 import 'package:expense_tracker/model/transactionModel.dart';
+import 'package:expense_tracker/ui_designs/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:simple_speed_dial/simple_speed_dial.dart';
@@ -73,13 +74,33 @@ class _DashboardState extends State<Dashboard> {
                     SizedBox(
                       height: 38,
                     ),
-                    Text(
-                      ' 🛍💰 Expense Tracker     🕵️‍♀️',
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          '🕵️‍♀️ Expense Tracker',
+                          style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        IconButton(
+                          icon: new Icon(
+                            Icons.account_circle_sharp,
+                            size: 30,
+                            color: Colors.black,
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Profile(),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),

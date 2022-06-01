@@ -52,7 +52,7 @@ class _SplashhScreenState extends State<SplashhScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: new AssetImage("images/Logo.jpg"),
+            image: new AssetImage("images/splash.jpeg"),
             fit: BoxFit.fill,
           ),
         ),
